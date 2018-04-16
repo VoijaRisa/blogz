@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<center><h1>Build a Blog</h1></center>
+
+{% if post_list|length == 0 %}
+<p>No posts yet</p>
+{% else %}
+    {% if id != "all" %}
+        <h2>{{single_post.title}}</h2>
+        <p>{{single_post.body}}</p>
+    {% else %}
+        {% for post in post_list %}
+            <h2><a href="/blog?id={{post.id}}">{{post.title}}</a></h2>
+            <p>{{post.body}}</p>
+            <center><img src="{{url_for('static', filename='divider.png')}}" /></center>
+        {% endfor %}
+    {% endif %}
+
+{% endif %}
+
+{% endblock %}

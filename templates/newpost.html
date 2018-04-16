@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<center><h1>Add a Blog Entry</h1></center>
+
+<form action='/blog?id={{id}}' method='post'>
+    <p><label>Title:<br><input type='text' name='title' value='{{returned_title}}' size=60/></br> </label></p>
+    <p><label>Post:<br> <input type='text' name='body' value='{{returned_body}}' id="blogtext"/></br> </label></p>
+    {% if error %}
+    <p><span class="error">Please fill in all boxes.</span></p>
+    {% endif %}
+    <p><input type='submit' value='Add entry' /></p>
+</form>
+
+{% endblock %}

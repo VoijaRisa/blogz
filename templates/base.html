@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{page_title}}</title>
+        <style type="text/css">
+            .error {
+                color: red;
+            }
+            #blogtext {
+                width: 600px;
+                height: 300px;
+            }
+            body {
+                width: 960px;
+                margin: auto;
+                background-color: black;
+                font-family: Georgia, serif;
+                color: #d5b987;
+            }
+            div {
+                border: solid 2px white;
+                border-radius: 30px;
+                background-color: #1e1e1e;
+                padding: 10px;
+            }
+            h1 {
+                text-align: center;
+                text-decoration: underline;
+                font-size: 55px;
+                font-family: Georgia, serif;
+            }
+            a:link {
+                color: #ccffff;
+            }
+            a:visited {
+                color: #f2e6ff;
+            }
+        </style>
+    </head>
+<body>
+    <div>
+    <p><a href="blog">Main Blog Page</a> | <a href="newpost">Add a Blog Entry</a></p>
+
+    {% block content %}
+    {% endblock %}
+    </div>
+</body>
+</html>
