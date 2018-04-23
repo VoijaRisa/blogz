@@ -7,9 +7,13 @@
 <p>No posts yet</p>
 {% else %}
     {% for post in post_list %}
+            {% if post.owner_id == user_name.id %}
+            
             <h2><a href="/blog?id={{post.id}}">{{post.title}}</a></h2>
             <p>{{post.body}}</p>
             <center><img src="static/divider.png" /></center>
+
+            {% endif %}
     {% endfor %}
 
 {% endif %}

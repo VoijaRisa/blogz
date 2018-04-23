@@ -78,13 +78,13 @@ def register():
 @app.route('/', methods=['POST', 'GET'])
 def index():
     user_list = User.query.all()
-    return render_template('index.html', user_list=user_list)
+    return render_template('index.html', user_list=user_list, page_title="User List")
 
 @app.route('/blog', methods=['POST', 'GET'])
 def blog():
     post_list = Blog.query.all()
     user_list = User.query.all()
-    
+        
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
@@ -92,7 +92,8 @@ def blog():
         owner_id = owner_id.id
         
         if title == "" or body == "":
-            return render_template('newpost.html', returned_title=title, returned_body=body, error="Please ensure all boxes are filled in.", page_title="Add a Post")
+            return render_template('newpost.html', returned_title=title, returned_body=body, error="Please ensure all boxes are filled in.", 
+            page_title="Add a Post")
 
         new_post = Blog(title, body, owner_id)
         db.session.add(new_post)
@@ -106,17 +107,20 @@ def blog():
         id = str(request.args.get('id'))
         if id != "None":
             single_post = Blog.query.get(id)
-            return render_template('blog.html', post_list=post_list, single_post=single_post, user_list=user_list, id=id, page_title="My Blog")
+            return render_template('blog.html', post_list=post_list, single_post=single_post, user_list=user_list, id=id, 
+            page_title="My Blog")
         else:
-            return render_template('blog.html', post_list=post_list, user_list=user_list, id="all", page_title="My Blog")
+            return render_template('blog.html', post_list=post_list, user_list=user_list, id="all", 
+            page_title="My Blog")
 
 @app.route('/singleuser')
 def singleuser():
     user_id = (request.args.get('id'))
-    post_list = Blog.query.filter_by(id=user_id).all()
+    post_list = Blog.query.all()
     user_name = User.query.filter_by(id=user_id).first()
-
-    return render_template('singleuser.html', post_list=post_list, user_name=user_name, page_title="Single User")
+    
+    return render_template('singleuser.html', post_list=post_list, user_name=user_name, 
+    page_title=("Posts by "+ user_name.username))
 
 @app.route('/newpost')
 def newpost():
