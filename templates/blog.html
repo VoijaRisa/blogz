@@ -8,12 +8,26 @@
 {% else %}
     {% if id != "all" %}
         <h2>{{single_post.title}}</h2>
+        <p><i>Written by:
+            {% for user in user_list %}
+                {% if user.id == single_post.owner_id %}
+                    <a href="singleuser?id={{user.id}}">{{user.username}}</a>
+                {% endif %}
+            {% endfor %}
+        </i></p>
         <p>{{single_post.body}}</p>
     {% else %}
         {% for post in post_list %}
             <h2><a href="/blog?id={{post.id}}">{{post.title}}</a></h2>
+            <p><i>Written by: 
+                {% for user in user_list %}
+                    {% if user.id == post.owner_id %}
+                        <a href="singleuser?id={{user.id}}">{{user.username}}</a>
+                    {% endif %}
+                {% endfor %}
+            </i></p>
             <p>{{post.body}}</p>
-            <center><img src="{{url_for('static', filename='divider.png')}}" /></center>
+            <center><img src="static/divider.png" /></center>
         {% endfor %}
     {% endif %}
 
