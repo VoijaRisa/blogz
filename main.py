@@ -48,7 +48,7 @@ def login():
         else:
             flash('User password incorrect, or user does not exist', 'error')
 
-    return render_template('login.html')
+    return render_template('login.html', page_title="Login")
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -108,10 +108,10 @@ def blog():
         if id != "None":
             single_post = Blog.query.get(id)
             return render_template('blog.html', post_list=post_list, single_post=single_post, user_list=user_list, id=id, 
-            page_title="My Blog")
+            page_title="Animal Blog")
         else:
             return render_template('blog.html', post_list=post_list, user_list=user_list, id="all", 
-            page_title="My Blog")
+            page_title="Animal Blog")
 
 @app.route('/singleuser')
 def singleuser():
